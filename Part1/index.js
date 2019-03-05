@@ -4,23 +4,43 @@
  function delayAlert(message) {
      setTimeout(() => {
          window.alert(message)
-     }, 1)
+     }, 100)
  }
 
  function play(val) {
      const player = document.getElementById('player');
      const square = document.getElementById(val);
-     
-     if (player.innerText === 'X') {
-         player.innerText = 'O';
-         square.innerText = 'X';
-         gameProgress[val] = 'X';
-     } else {
-         player.innerText = 'X';
-         square.innerText = 'O';
-         gameProgress[val] = 'O';
+
+     if (player.innerText === 'X' && square.innerText === 'O') {
+        player.innerText = 'O';
+        square.innerText = 'X';
+        gameProgress[val] = 'X';
+     } else if (player.innerText === 'O' && square.innerText === 'null') {
+        player.innerText = 'O';
+        square.innerText = 'X';
+        gameProgress[val] = 'X';
+     } else if (player.innerText === 'X' && square.innerText === 'null') {
+        player.innerText = 'O';
+        square.innerText = 'X';
+        gameProgress[val] = 'X';
+     } else if (player.innerText === 'O' && square.innerText === 'null') {
+        player.innerText = 'O';
+        square.innerText = 'X';
+        gameProgress[val] = 'X';
      }
-     console.log(gameProgress)
+
+ 
+    // if (player.innerText === 'X') {
+    //     player.innerText = 'O';
+    //     square.innerText = 'X';
+    //     gameProgress[val] = 'X';
+    // } else if (player.innerText === 'O') {
+    //     player.innerText = 'X';
+    //     square.innerText = 'O';
+    //     gameProgress[val] = 'O';
+    // }
+    console.log(square.innerText)
+    console.log(gameProgress)
 
     // Play X wins conditions
 
@@ -56,7 +76,11 @@
         delayAlert('Player O wins the game!')
     } else if (gameProgress[2] !== null && gameProgress[2] === 'O' && gameProgress[2] === gameProgress[4] && gameProgress[4] === gameProgress[6]) {
         delayAlert('Player O wins the game!')
-    } else if (!gameProgress.includes(null)) {
+    } 
+    
+    // if gameProgress has no null and other statements didn't fire => CAT wins (tie)
+
+    else if (!gameProgress.includes(null)) {
         delayAlert(`CAT has won the game!`)
     }
  };
